@@ -14,14 +14,34 @@
         h1 {
             color: #333;
         }
-        .slider-container {
-            margin: 20px 0;
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #ddd;
+            border: 1px solid #ccc;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        .tab.active {
+            background: #333;
+            color: white;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
         }
         .graph-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
         }
         .graph {
             border: 2px solid #333;
@@ -33,60 +53,71 @@
         }
         iframe {
             width: 100%;
-            max-width: 600px;
-            height: 400px;
+            max-width: 450px; /* スマホ向け */
+            height: 300px;
             border: none;
-        }
-        input[type="range"] {
-            width: 50%;
         }
     </style>
 </head>
 <body>
     <h1>G1レース統計</h1>
 
-    <div class="slider-container">
-        <label for="size-slider">グラフのサイズ:</label>
-        <input type="range" id="size-slider" min="200" max="800" value="600" step="10">
+    <!-- タブメニュー -->
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('graphs')">グラフ</div>
+        <div class="tab" onclick="showTab('sheet1')">シート1</div>
+        <div class="tab" onclick="showTab('sheet2')">シート2</div>
     </div>
 
-    <div class="graph-container">
-        <div class="graph">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=262995811&format=interactive"></iframe>
+    <!-- グラフエリア -->
+    <div id="graphs" class="content active">
+        <div class="graph-container">
+            <div class="graph">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=262995811&format=interactive"></iframe>
+            </div>
+            <div class="graph">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=1135857323&format=interactive"></iframe>
+            </div>
+            <div class="graph">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=1143251027&format=interactive"></iframe>
+            </div>
+            <div class="graph">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=33068250&format=interactive"></iframe>
+            </div>
+            <div class="graph">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=771264842&format=interactive"></iframe>
+            </div>
+            <div class="graph">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=1642926778&format=interactive"></iframe>
+            </div>
         </div>
+    </div>
 
-        <div class="graph">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=1135857323&format=interactive"></iframe>
-        </div>
-        
-        <div class="graph">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=1143251027&format=interactive"></iframe>
-        </div>
+    <!-- シート1 -->
+    <div id="sheet1" class="content">
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubhtml?gid=1793385342&single=true" width="100%" height="500"></iframe>
+    </div>
 
-        <div class="graph">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=33068250&format=interactive"></iframe>
-        </div>
-
-        <div class="graph">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=771264842&format=interactive"></iframe>
-        </div>
-
-        <div class="graph">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=1642926778&format=interactive"></iframe>
-        </div>
+    <!-- シート2 -->
+    <div id="sheet2" class="content">
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubhtml?gid=1961985889&single=true" width="100%" height="500"></iframe>
     </div>
 
     <script>
-        const slider = document.getElementById("size-slider");
-        const iframes = document.querySelectorAll("iframe");
-
-        slider.addEventListener("input", function() {
-            const newSize = slider.value + "px";
-            iframes.forEach(iframe => {
-                iframe.style.width = newSize;
-                iframe.style.height = (slider.value * 0.67) + "px"; // アスペクト比を維持
+        function showTab(tabId) {
+            // 全タブを非表示にする
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('active');
             });
-        });
+            // クリックされたタブを表示
+            document.getElementById(tabId).classList.add('active');
+
+            // タブのアクティブ状態を切り替え
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
     </script>
 </body>
 </html>
