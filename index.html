@@ -14,6 +14,9 @@
         h1 {
             color: #333;
         }
+        .slider-container {
+            margin: 20px 0;
+        }
         .graph-container {
             display: flex;
             flex-wrap: wrap;
@@ -26,17 +29,27 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: fit-content;
         }
         iframe {
-            width: 600px;
+            width: 100%;
+            max-width: 600px;
             height: 400px;
             border: none;
+        }
+        input[type="range"] {
+            width: 50%;
         }
     </style>
 </head>
 <body>
     <h1>G1レース統計</h1>
-    
+
+    <div class="slider-container">
+        <label for="size-slider">グラフのサイズ:</label>
+        <input type="range" id="size-slider" min="200" max="800" value="600" step="10">
+    </div>
+
     <div class="graph-container">
         <div class="graph">
             <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=262995811&format=interactive"></iframe>
@@ -61,8 +74,19 @@
         <div class="graph">
             <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubchart?oid=1642926778&format=interactive"></iframe>
         </div>
-
-
     </div>
+
+    <script>
+        const slider = document.getElementById("size-slider");
+        const iframes = document.querySelectorAll("iframe");
+
+        slider.addEventListener("input", function() {
+            const newSize = slider.value + "px";
+            iframes.forEach(iframe => {
+                iframe.style.width = newSize;
+                iframe.style.height = (slider.value * 0.67) + "px"; // アスペクト比を維持
+            });
+        });
+    </script>
 </body>
 </html>
