@@ -37,21 +37,22 @@
         .content.active {
             display: block;
         }
-        .graph-container, .sheet-container {
+        .graph-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
         }
-        .graph, .sheet {
+        .graph {
             border: 2px solid #333;
             padding: 10px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 450px; /* スマホに最適な幅 */
-            height: 300px; /* 高さ固定 */
+            max-width: 450px; /* PCとスマホ両方で最適化 */
+            height: 300px;
+            overflow: hidden; /* スクロール防止 */
         }
         iframe {
             width: 100%;
@@ -70,7 +71,7 @@
         <div class="tab" onclick="showTab('sheet2')">掛け金</div>
     </div>
 
-    <!-- グラフエリア（6つ） -->
+    <!-- グラフエリア -->
     <div id="graphs" class="content active">
         <div class="graph-container">
             <div class="graph">
@@ -94,30 +95,13 @@
         </div>
     </div>
 
-    <!-- シート1（回収額&回収率） -->
-    <div id="sheet1" class="content">
-        <div class="sheet">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubhtml?gid=1266056440&single=true&widget=true&headers=false"></iframe>
-        </div>
-    </div>
-
-    <!-- シート2（掛け金） -->
-    <div id="sheet2" class="content">
-        <div class="sheet">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRc-celwGB5t3r4mGHdRHi48tGpY3Bg0x0v3BNLFrqukEWAT4QoHi0Q2zsbPDVKIfglG7YcCI_q8QPs/pubhtml?gid=951086961&single=true&widget=true&headers=false"></iframe>
-        </div>
-    </div>
-
     <script>
         function showTab(tabId) {
-            // 全タブを非表示にする
             document.querySelectorAll('.content').forEach(content => {
                 content.classList.remove('active');
             });
-            // クリックされたタブを表示
             document.getElementById(tabId).classList.add('active');
 
-            // タブのアクティブ状態を切り替え
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
