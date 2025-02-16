@@ -39,9 +39,9 @@
         }
         .graph-container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
         .graph {
             border: 2px solid #333;
@@ -49,12 +49,14 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            width: fit-content;
+            overflow-x: auto;
+            white-space: nowrap;
+            width: 100%;
         }
         iframe {
-            width: 100%;
-            max-width: 450px; /* スマホ向け */
-            height: 300px;
+            width: 100%; /* 画面の横幅に合わせる */
+            min-width: 600px; /* 最低600pxは確保（スマホでスクロール可能） */
+            height: 400px;
             border: none;
         }
     </style>
