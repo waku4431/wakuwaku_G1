@@ -43,7 +43,7 @@
             justify-content: center;
             gap: 10px;
         }
-        .graph, .sheet {
+        .graph {
             border: 2px solid #333;
             padding: 10px;
             background-color: #fff;
@@ -52,6 +52,18 @@
             width: 100%;
             max-width: 600px;
             height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        .sheet {
+            border: 2px solid #333;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            height: 650px; /* 回収額&回収率と掛け金タブ用の高さ変更 */
             overflow: hidden;
             position: relative;
         }
@@ -72,6 +84,7 @@
         }
     </style>
 </head>
+
 
 <body>
     <h3>わくわくG1サイト</h3>
